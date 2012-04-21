@@ -277,6 +277,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginSample.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = "LaunchAtLoginSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -288,6 +289,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginSample.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = "LaunchAtLoginSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
