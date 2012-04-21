@@ -3,3 +3,5 @@ There are two files missing from this repo that are specific to your instance of
 ```
 python setup.py <main_app_url_scheme> <helper_app_bundle_identifier>
 ```
+
+Special thanks to [Curtis Hard](http://www.geekygoodness.com) for offering some much needed advice on this project.
