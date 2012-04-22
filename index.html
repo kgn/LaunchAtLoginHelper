@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>LaunchAtLoginHelper by kgn</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>LaunchAtLoginHelper</h1>
+        <p>A helper app to launch a main app at login under sandboxing</p>
+        <p class="view"><a href="https://github.com/kgn/LaunchAtLoginHelper">View the Project on GitHub <small>kgn/LaunchAtLoginHelper</small></a></p>
+        <ul>
+          <li><a href="https://github.com/kgn/LaunchAtLoginHelper/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kgn/LaunchAtLoginHelper/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kgn/LaunchAtLoginHelper">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>When creating a sandboxed app <code>LSSharedFileListInsertItemURL</code> can no longer be used to launch the app at startup. Instead <code>SMLoginItemSetEnabled</code> should be used with a helper app inside the main app's bundle that launches the main app. <strong>LaunchAtLoginHelper</strong> is that helper app, it is designed to be as easy as possible to integrate into the main app to allow it to launch at login when sandboxed.</p>
+
+<p>A lot of research was put into this helper app. For example <a href="http://developer.apple.com/library/mac/#documentation/Security/Conceptual/AppSandboxDesignGuide/DesigningYourSandbox/DesigningYourSandbox.html#//apple_ref/doc/uid/TP40011183-CH4-SW3">Apple's docs</a> state that <code>LSRegisterURL</code> should be used to register the helper app, however this never seemed to work and after further digging it turns out this is a <a href="https://devforums.apple.com/message/647212#647212">typo in the docs</a>. Many examples I found online used <code>NSWorkspace launchApplication:</code> to launch the main app, however this was blocked by sandboxing so a url scheme is used instead.</p>
+
+<p>This project contains a <a href="https://github.com/kgn/LaunchAtLoginHelper/tree/master/LaunchAtLoginSample">sample app</a> to demonstrate how the main app should be configured and how to setup a checkbox to enable and disable launching at login.</p>
+
+<h1>How to use</h1>
+
+<p>First download or even better submodule <strong>LaunchAtLoginHelper</strong>. To clone the repository as a submodule use the following commands:</p>
+
+<pre><code>$ cd &lt;main_app_project&gt;
+$ git clone --recursive git://github.com/kgn/LaunchAtLoginHelper.git
+</code></pre>
+
+<p><strong>LaunchAtLoginHelper</strong> uses a url scheme to launch the main app, if the main app doesn't have a url scheme yet add one.</p>
+
+<p><img src="http://kgn.github.com/content/launchatlogin/url_scheme.png" alt=""></p>
+
+<p>There are two files missing from this repo that are specific to your instance of the helper app. To generate these files run the <code>setup.py</code> python script and pass in the url scheme to launch the main app and the bundle identifier of the helper app, this is usually based of of the bundle identifier of the main app but with <em>Helper</em> added onto the end.</p>
+
+<pre><code>$ cd LaunchAtLoginHelper
+$ python setup.py &lt;main_app_url_scheme&gt; &lt;helper_app_bundle_identifier&gt;
+</code></pre>
+
+<p>This will create <code>LLManager.h</code> which is used in both the helper app and the main app and contains <code>#define</code>'s for the url scheme and the helper app's bundle identifier. <code>LaunchAtLoginHelper-Info.plist</code> is also created for the helper app with it's custom bundle identifier filled in.</p>
+
+<p>Once these two files are generated it's time to add <strong>LaunchAtLoginHelper</strong> to the main app. Drag <code>LaunchAtLoginHelper.xcodeproj</code>, <code>LLStrings.h</code>, <code>LLManager.h</code>, and <code>LLManager.m</code> to the main app's project.</p>
+
+<p><img src="http://kgn.github.com/content/launchatlogin/drag_drop_file.png" alt=""></p>
+
+<p>Next go to the <em>Build Phases</em> for the main app and add <strong>LaunchAtLoginHelper</strong> as a <em>Target Dependency</em> and create a new <em>Copy Files Build Phase</em>. Set the <em>Destination</em> of this build phase to <code>Wrapper</code> and the <em>Subpath</em> to <code>Contents/Library/LoginItems</code>.</p>
+
+<p><img src="http://kgn.github.com/content/launchatlogin/build_phases.png" alt=""></p>
+
+<p>Lastly add <code>ServiceManagement.framework</code> to the main app.</p>
+
+<p>Once this is done use <code>LLManager</code> to enable and disable launching at login! <a href="https://github.com/kgn/LaunchAtLoginHelper/blob/master/LaunchAtLoginSample/LLAppDelegate.m"><strong>LaunchAtLoginSample</strong></a> shows how to hook this up to a checkbox.</p>
+
+<div class="highlight">
+<pre><span class="cp">#import "LLManager.h"</span>
+
+<span class="p">[</span><span class="n">LLManager</span> <span class="n">launchAtLogin</span><span class="p">]</span> <span class="c1">// will the app launch at login?</span>
+<span class="p">[</span><span class="n">LLManager</span> <span class="nl">setLaunchAtLogin:</span><span class="n">YES</span><span class="p">]</span> <span class="c1">// set the app to launch at login</span>
+</pre>
+</div>
+
+
+<hr><p>Special thanks to <a href="http://www.geekygoodness.com">Curtis Hard</a> for offering some much needed advice on this project.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/kgn">kgn</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
