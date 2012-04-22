@@ -39,7 +39,7 @@ Once this is done use `LLManager` to enable and disable launching at login! [**L
 ``` obj-c
 #import "LLManager.h"
 
-[LLManager launchAtLogin] // is the app is setup to launch at login?
+[LLManager launchAtLogin] // will the app launch at login?
 [LLManager setLaunchAtLogin:YES] // set the app to launch at login
 ```
 
