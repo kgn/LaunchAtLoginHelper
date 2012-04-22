@@ -13,8 +13,14 @@
 @implementation LLManager
 
 + (BOOL)launchAtLogin{
-    BOOL launch = NO;    
-    NSArray *jobs = (NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
+    BOOL launch = NO;
+    CFArrayRef cfJobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
+#if __has_feature(objc_arc)
+    NSArray *jobs = [NSArray arrayWithArray:(__bridge NSArray *)cfJobs];
+#else    
+    NSArray *jobs = [NSArray arrayWithArray:(NSArray *)cfJobs];
+#endif
+    CFRelease(cfJobs);
     if([jobs count]){
         for(NSDictionary *job in jobs){
             if([[job objectForKey:@"Label"] isEqualToString:LLHelperBundleIdentifier]){
