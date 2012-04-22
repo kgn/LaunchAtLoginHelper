@@ -30,9 +30,11 @@ Once these two files are generated it's time to add **LaunchAtLoginHelper** to t
 
 ![](http://kgn.github.com/content/launchatlogin/drag_drop_file.png)
 
-Next go to the *Build Phases* for the main app and add **LaunchAtLoginHelper** as a *Target Dependency* and create a new *Copy Files Build Phase*. Set the *Destination* of this build phase to *Wrapper* and the *Subpath* to *Contents/Library/LoginItems*.
+Next go to the *Build Phases* for the main app and add **LaunchAtLoginHelper** as a *Target Dependency* and create a new *Copy Files Build Phase*. Set the *Destination* of this build phase to `Wrapper` and the *Subpath* to `Contents/Library/LoginItems`.
 
 ![](http://kgn.github.com/content/launchatlogin/build_phases.png)
+
+Lastly add `ServiceManagement.framework` to the main app.
 
 Once this is done use `LLManager` to enable and disable launching at login! [**LaunchAtLoginSample**](https://github.com/kgn/LaunchAtLoginHelper/blob/master/LaunchAtLoginSample/LLAppDelegate.m) shows how to hook this up to a checkbox.
 
