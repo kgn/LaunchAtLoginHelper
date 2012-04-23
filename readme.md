@@ -2,6 +2,8 @@ When creating a sandboxed app `LSSharedFileListInsertItemURL` can no longer be u
 
 A lot of research was put into this helper app. For example [Apple's docs](http://developer.apple.com/library/mac/#documentation/Security/Conceptual/AppSandboxDesignGuide/DesigningYourSandbox/DesigningYourSandbox.html#//apple_ref/doc/uid/TP40011183-CH4-SW3) state that `LSRegisterURL` should be used to register the helper app, however this never seemed to work and after further digging it turns out this is a [typo in the docs](https://devforums.apple.com/message/647212#647212). Many examples I found online used `NSWorkspace launchApplication:` to launch the main app, however this was blocked by sandboxing so a url scheme is used instead.
 
+**LaunchAtLoginHelper** calls the main app's scheme twice, once to launchg the app and then again with `launchedAtLogin` so the main app can know if it has been launched at login. For example [Play by Play](http://playbyplayapp.com) uses this to hide the app if it was launched at login.
+
 This project contains a [sample app](https://github.com/kgn/LaunchAtLoginHelper/tree/master/LaunchAtLoginSample) to demonstrate how the main app should be configured and how to setup a checkbox to enable and disable launching at login.
 
 # How to use
