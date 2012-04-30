@@ -28,10 +28,7 @@
                 break;
             }
         }
-    }
-#if !__has_feature(objc_arc)       
-    [jobs release], jobs = nil;
-#endif    
+    }   
     return launch;  
 }
 
