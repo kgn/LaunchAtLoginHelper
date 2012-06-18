@@ -12,7 +12,7 @@ First download or even better submodule **LaunchAtLoginHelper**. To clone the re
 
 ```
 $ cd <main_app_project>
-$ git clone --recursive git://github.com/kgn/LaunchAtLoginHelper.git
+$ git clone --recursive https://github.com/kgn/LaunchAtLoginHelper.git
 ```
 
 **LaunchAtLoginHelper** uses a url scheme to launch the main app, if the main app doesn't have a url scheme yet add one.
