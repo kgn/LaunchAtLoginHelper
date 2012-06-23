@@ -13,4 +13,6 @@
 + (BOOL)launchAtLogin;
 + (void)setLaunchAtLogin:(BOOL)value;
 
+@property (assign) BOOL launchAtLogin;
+
 @end
