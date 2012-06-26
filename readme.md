@@ -47,6 +47,10 @@ Once this is done use `LLManager` to enable and disable launching at login! [**L
 [LLManager setLaunchAtLogin:YES] // set the app to launch at login
 ```
 
+# Bindings
+
+The `LLManager` class supports KVO and Cocoa Bindings. This allows for a completely code-free implementaion of this class. To get started, open the Interface Builder document in which you plan to create a login toggle. Drag a generic `NSObject` from the Utilities pane, and drop it onto your canvas. Select the newly created object, and open the Identity inspector tab in the Utilities pane. Change the class from `NSObject` to `LLManager`. Now, select to your login toggle (checkbox) and open the Bindings inspector in the Utilities pane. Expand `Value`, check the "Bind to", and select the name of the `LLManager` object you created earlier. Set the key path to `self.launchAtLogin`. You're done!
+
 ---
 
 Special thanks to [Curtis Hard](http://www.geekygoodness.com) for offering some much needed advice on this project.
