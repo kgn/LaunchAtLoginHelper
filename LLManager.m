@@ -38,4 +38,16 @@
     }
 }
 
+#pragma mark - Bindings support
+
+- (BOOL)launchAtLogin {
+    return [[self class] launchAtLogin];
+}
+
+- (void)setLaunchAtLogin:(BOOL)launchAtLogin {
+    [self willChangeValueForKey:@"launchAtLogin"];
+    [[self class] setLaunchAtLogin:launchAtLogin];
+    [self didChangeValueForKey:@"launchAtLogin"];
+}
+
 @end
