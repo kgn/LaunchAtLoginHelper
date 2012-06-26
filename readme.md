@@ -26,7 +26,7 @@ $ cd LaunchAtLoginHelper
 $ python setup.py <main_app_url_scheme> <helper_app_bundle_identifier>
 ```
 
-This will create `LLManager.h` which is used in both the helper app and the main app and contains `#define`'s for the url scheme and the helper app's bundle identifier. `LaunchAtLoginHelper-Info.plist` is also created for the helper app with it's custom bundle identifier filled in.
+This will create `LLStrings.h` which is used in both the helper app and the main app and contains `#define`'s for the url scheme and the helper app's bundle identifier. `LaunchAtLoginHelper-Info.plist` is also created for the helper app with it's custom bundle identifier filled in.
 
 Once these two files are generated it's time to add **LaunchAtLoginHelper** to the main app. Drag `LaunchAtLoginHelper.xcodeproj`, `LLStrings.h`, `LLManager.h`, and `LLManager.m` to the main app's project.
 
