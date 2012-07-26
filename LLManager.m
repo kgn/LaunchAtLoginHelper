@@ -23,8 +23,8 @@
     CFRelease(cfJobs);
     if([jobs count]){
         for(NSDictionary *job in jobs){
-            if([[job objectForKey:@"Label"] isEqualToString:LLHelperBundleIdentifier]){
-                launch = [[job objectForKey:@"OnDemand"] boolValue];
+            if([job[@"Label"] isEqualToString:LLHelperBundleIdentifier]){
+                launch = [job[@"OnDemand"] boolValue];
                 break;
             }
         }
