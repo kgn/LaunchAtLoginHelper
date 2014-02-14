@@ -45,10 +45,12 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
 + (void)setLaunchAtLogin:(BOOL)value
          notifyOnFailure:(BOOL)wantFailureNotification {
 #if __has_feature(objc_arc)
-    if(!SMLoginItemSetEnabled((__bridge CFStringRef)LLHelperBundleIdentifier, value)){
+    CFStringRef LLHelperBundleIdentifierCF = (__bridge CFStringRef)LLHelperBundleIdentifier;
 #else
-    if(!SMLoginItemSetEnabled((CFStringRef)LLHelperBundleIdentifier, value)){
+    CFStringRef LLHelperBundleIdentifierCF = (CFStringRef)LLHelperBundleIdentifier;
 #endif
+    
+    if(!SMLoginItemSetEnabled(LLHelperBundleIdentifierCF, value)){
         if(wantFailureNotification){
             [[NSNotificationCenter defaultCenter] postNotificationName:LLManagerSetLaunchAtLoginFailedNotification object:self];
         }
