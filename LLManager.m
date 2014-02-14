@@ -10,6 +10,10 @@
 #import "LLStrings.h"
 #import <ServiceManagement/ServiceManagement.h>
 
+
+NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLManagerSetLaunchAtLoginFailedNotification";
+
+
 @implementation LLManager
 
 + (BOOL)launchAtLogin{
@@ -33,13 +37,24 @@
     return launch;  
 }
 
-+ (void)setLaunchAtLogin:(BOOL)value{
++ (void)setLaunchAtLogin:(BOOL)value {
+    [self setLaunchAtLogin:value
+           notifyOnFailure:NO];
+}
+
++ (void)setLaunchAtLogin:(BOOL)value
+         notifyOnFailure:(BOOL)wantFailureNotification {
 #if __has_feature(objc_arc)
     if(!SMLoginItemSetEnabled((__bridge CFStringRef)LLHelperBundleIdentifier, value)){
 #else
     if(!SMLoginItemSetEnabled((CFStringRef)LLHelperBundleIdentifier, value)){
 #endif
-        NSLog(@"SMLoginItemSetEnabled failed!");
+        if(wantFailureNotification){
+            [[NSNotificationCenter defaultCenter] postNotificationName:LLManagerSetLaunchAtLoginFailedNotification object:self];
+        }
+        else {
+            NSLog(@"SMLoginItemSetEnabled failed!");
+        }
     }
 }
 
@@ -51,7 +66,8 @@
 
 - (void)setLaunchAtLogin:(BOOL)launchAtLogin {
     [self willChangeValueForKey:@"launchAtLogin"];
-    [[self class] setLaunchAtLogin:launchAtLogin];
+    [[self class] setLaunchAtLogin:launchAtLogin
+                   notifyOnFailure:self.notifyIfSetLaunchAtLoginFailed];
     [self didChangeValueForKey:@"launchAtLogin"];
 }
 
