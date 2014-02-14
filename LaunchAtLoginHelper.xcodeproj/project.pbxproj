@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2C348D18AEB4160000F0E5 /* LaunchAtLoginHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LaunchAtLoginHelper-Info.plist"; path = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist"; sourceTree = "<group>"; };
 		734C379415414CE200994189 /* LaunchAtLoginHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LaunchAtLoginHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734C379815414CE200994189 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		734C379B15414CE200994189 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -22,7 +23,6 @@
 		73C920E615414E7800C2A75A /* LLHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLHAppDelegate.m; path = LaunchAtLoginHelper/LLHAppDelegate.m; sourceTree = "<group>"; };
 		73C920E715414E7800C2A75A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LaunchAtLoginHelper/main.m; sourceTree = "<group>"; };
 		73C920E815414E7800C2A75A /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = LaunchAtLoginHelper/MainMenu.xib; sourceTree = "<group>"; };
-		73C920FA15414F7000C2A75A /* LLStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStrings.h; sourceTree = SOURCE_ROOT; };
 		73C920FB15414FC900C2A75A /* LaunchAtLoginHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = LaunchAtLoginHelper.entitlements; path = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,10 +42,10 @@
 			isa = PBXGroup;
 			children = (
 				73C920E715414E7800C2A75A /* main.m */,
-				73C920FA15414F7000C2A75A /* LLStrings.h */,
 				73C920E515414E7800C2A75A /* LLHAppDelegate.h */,
 				73C920E615414E7800C2A75A /* LLHAppDelegate.m */,
 				73C920E815414E7800C2A75A /* MainMenu.xib */,
+				3D2C348D18AEB4160000F0E5 /* LaunchAtLoginHelper-Info.plist */,
 				73C920FB15414FC900C2A75A /* LaunchAtLoginHelper.entitlements */,
 				734C379715414CE200994189 /* Frameworks */,
 				734C379515414CE200994189 /* Products */,

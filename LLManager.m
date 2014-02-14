@@ -9,7 +9,6 @@
 //
 
 #import "LLManager.h"
-#import "LLStrings.h"
 #import <ServiceManagement/ServiceManagement.h>
 
 
@@ -17,6 +16,13 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
 
 
 @implementation LLManager
+
++ (NSString *)helperBundleIdentifier {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+	NSString *helperBundleIdentifier = infoDictionary[@"LLHelperBundleIdentifier"];
+    if(helperBundleIdentifier == nil)  NSLog(@"LLHelperBundleIdentifier not set in “Info.plist”!");
+    return helperBundleIdentifier;
+}
 
 + (BOOL)launchAtLogin{
     BOOL launch = NO;
@@ -28,9 +34,12 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
     NSArray *jobs = [NSArray arrayWithArray:(NSArray *)cfJobs];
     CFRelease(cfJobs);
 #endif
+    
+    NSString *helperBundleIdentifier = [self helperBundleIdentifier];
+
     if([jobs count]){
         for(NSDictionary *job in jobs){
-            if([job[@"Label"] isEqualToString:LLHelperBundleIdentifier]){
+            if([job[@"Label"] isEqualToString:helperBundleIdentifier]){
                 launch = [job[@"OnDemand"] boolValue];
                 break;
             }
@@ -46,10 +55,11 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
 
 + (void)setLaunchAtLogin:(BOOL)value
          notifyOnFailure:(BOOL)wantFailureNotification {
+    NSString *helperBundleIdentifier = [self helperBundleIdentifier];
 #if __has_feature(objc_arc)
-    CFStringRef LLHelperBundleIdentifierCF = (__bridge CFStringRef)LLHelperBundleIdentifier;
+    CFStringRef LLHelperBundleIdentifierCF = (__bridge CFStringRef)helperBundleIdentifier;
 #else
-    CFStringRef LLHelperBundleIdentifierCF = (CFStringRef)LLHelperBundleIdentifier;
+    CFStringRef LLHelperBundleIdentifierCF = (CFStringRef)helperBundleIdentifier;
 #endif
     
     if(!SMLoginItemSetEnabled(LLHelperBundleIdentifierCF, value)){
