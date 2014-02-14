@@ -15,6 +15,7 @@
 + (BOOL)launchAtLogin{
     BOOL launch = NO;
     CFArrayRef cfJobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
+    if(cfJobs == NULL)  return NO;
 #if __has_feature(objc_arc)
     NSArray *jobs = CFBridgingRelease(cfJobs);
 #else    
