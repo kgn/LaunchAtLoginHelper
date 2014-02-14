@@ -16,11 +16,11 @@
     BOOL launch = NO;
     CFArrayRef cfJobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
 #if __has_feature(objc_arc)
-    NSArray *jobs = [NSArray arrayWithArray:(__bridge NSArray *)cfJobs];
+    NSArray *jobs = CFBridgingRelease(cfJobs);
 #else    
     NSArray *jobs = [NSArray arrayWithArray:(NSArray *)cfJobs];
-#endif
     CFRelease(cfJobs);
+#endif
     if([jobs count]){
         for(NSDictionary *job in jobs){
             if([job[@"Label"] isEqualToString:LLHelperBundleIdentifier]){
