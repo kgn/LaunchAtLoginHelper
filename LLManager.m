@@ -33,7 +33,11 @@
 }
 
 + (void)setLaunchAtLogin:(BOOL)value{
+#if __has_feature(objc_arc)
+    if(!SMLoginItemSetEnabled((__bridge CFStringRef)LLHelperBundleIdentifier, value)){
+#else
     if(!SMLoginItemSetEnabled((CFStringRef)LLHelperBundleIdentifier, value)){
+#endif
         NSLog(@"SMLoginItemSetEnabled failed!");
     }
 }
