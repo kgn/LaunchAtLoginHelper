@@ -17,7 +17,7 @@
 }
 
 - (IBAction)checkBoxAction:(id)sender{
-    [LLManager setLaunchAtLogin:[self.checkBox state]];
+    [LLManager setLaunchAtLogin:[sender state]];
 }
 
 @end
