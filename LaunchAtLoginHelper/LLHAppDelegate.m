@@ -22,13 +22,14 @@
     NSString *URLScheme = [self URLScheme];
     
     // Call the scheme to launch the app
-    NSString *scheme = [NSString stringWithFormat:@"%@://", URLScheme];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:scheme]];
+    NSString *schemeURLString = [URLScheme stringByAppendingString:@"://"];
+    NSURL *schemeURL = [NSURL URLWithString:schemeURLString];
+    [[NSWorkspace sharedWorkspace] openURL:schemeURL];
     
     // Call the app again this time with `launchedAtLogin` so it knows how it was launched
-    NSString *schemeLaunchedAtLogin = 
-    [NSString stringWithFormat:@"%@://launchedAtLogin", URLScheme];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:schemeLaunchedAtLogin]];    
+    NSString *schemeLaunchedAtLogin = [schemeURLString stringByAppendingString:@"launchedAtLogin"];
+    NSURL *schemeLaunchedAtLoginURL = [NSURL URLWithString:schemeLaunchedAtLogin];
+    [[NSWorkspace sharedWorkspace] openURL:schemeLaunchedAtLoginURL];
     [NSApp terminate:self];
 }
 
