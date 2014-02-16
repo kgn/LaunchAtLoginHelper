@@ -28,12 +28,7 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
     BOOL launch = NO;
     CFArrayRef cfJobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     if(cfJobs == NULL)  return NO;
-#if __has_feature(objc_arc)
     NSArray *jobs = CFBridgingRelease(cfJobs);
-#else    
-    NSArray *jobs = [NSArray arrayWithArray:(NSArray *)cfJobs];
-    CFRelease(cfJobs);
-#endif
     
     NSString *helperBundleIdentifier = [self helperBundleIdentifier];
 
@@ -56,11 +51,7 @@ NSString * const    LLManagerSetLaunchAtLoginFailedNotification        = @"LLMan
 + (void)setLaunchAtLogin:(BOOL)value
          notifyOnFailure:(BOOL)wantFailureNotification {
     NSString *helperBundleIdentifier = [self helperBundleIdentifier];
-#if __has_feature(objc_arc)
     CFStringRef LLHelperBundleIdentifierCF = (__bridge CFStringRef)helperBundleIdentifier;
-#else
-    CFStringRef LLHelperBundleIdentifierCF = (CFStringRef)helperBundleIdentifier;
-#endif
     
     if(!SMLoginItemSetEnabled(LLHelperBundleIdentifierCF, value)){
         if(wantFailureNotification){
