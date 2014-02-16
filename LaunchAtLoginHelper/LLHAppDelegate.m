@@ -13,7 +13,7 @@
 
 - (NSString *)URLScheme {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-	NSString *URLScheme = infoDictionary[@"LLURLScheme"];
+    NSString *URLScheme = infoDictionary[@"LLURLScheme"];
     if(URLScheme == nil)  NSLog(@"LLURLScheme not set in “Info.plist”!");
     return URLScheme;
 }
