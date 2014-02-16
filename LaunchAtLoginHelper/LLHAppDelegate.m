@@ -4,6 +4,7 @@
 //
 //  Created by David Keegan on 4/20/12.
 //  Copyright (c) 2012 David Keegan.
+//  Copyright (c) 2014 Jan Weiß.
 //  Some rights reserved: <http://opensource.org/licenses/mit-license.php>
 //
 
@@ -21,15 +22,14 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
     NSString *URLScheme = [self URLScheme];
     
-    // Call the scheme to launch the app
-    NSString *schemeURLString = [URLScheme stringByAppendingString:@"://"];
-    NSURL *schemeURL = [NSURL URLWithString:schemeURLString];
+    // Launch the main app by opening a URL with our custom scheme
+    // and `launchedAtLogin` as the host.
+    // This way the main app can check how it was launched.
+	NSURL *schemeURL = [[NSURL alloc] initWithScheme:URLScheme
+                                                host:@"launchedAtLogin"
+                                                path:@"/"];
+
     [[NSWorkspace sharedWorkspace] openURL:schemeURL];
-    
-    // Call the app again this time with `launchedAtLogin` so it knows how it was launched
-    NSString *schemeLaunchedAtLogin = [schemeURLString stringByAppendingString:@"launchedAtLogin"];
-    NSURL *schemeLaunchedAtLoginURL = [NSURL URLWithString:schemeLaunchedAtLogin];
-    [[NSWorkspace sharedWorkspace] openURL:schemeLaunchedAtLoginURL];
     [NSApp terminate:self];
 }
 
