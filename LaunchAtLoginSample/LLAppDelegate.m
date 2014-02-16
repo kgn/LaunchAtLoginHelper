@@ -12,9 +12,6 @@
 
 @implementation LLAppDelegate
 
-@synthesize window = _window;
-@synthesize checkBox = _checkBox;
-
 - (void)applicationDidFinishLaunching:(NSNotification *)notification{
     [self.checkBox setState:[LLManager launchAtLogin]];
 }
