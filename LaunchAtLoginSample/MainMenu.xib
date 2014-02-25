@@ -664,7 +664,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="checkBoxAction:" target="494" id="541"/>
+                            <binding destination="jyP-1a-sO5" name="value" keyPath="launchAtLogin" id="6hf-vf-vL7"/>
                         </connections>
                     </button>
                 </subviews>
@@ -681,5 +681,11 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
+        <customObject id="jyP-1a-sO5" userLabel="Launch Manager" customClass="LLManager">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="notifyIfSetLaunchAtLoginFailed" value="YES"/>
+            </userDefinedRuntimeAttributes>
+        </customObject>
+        <userDefaultsController representsSharedInstance="YES" id="njg-MX-xAS"/>
     </objects>
 </document>
