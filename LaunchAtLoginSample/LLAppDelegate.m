@@ -39,11 +39,10 @@
 - (void)settingLaunchAtLoginFailed:(NSNotification *)notification{
 	NSAlert *alert = nil;
 	
-	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 	NSDictionary *localizedInfoDictionary = [[NSBundle mainBundle] localizedInfoDictionary];
 	
-	NSString *displayName = [localizedInfoDictionary objectForKey:(NSString *)kCFBundleNameKey];
-	if (displayName == nil)  displayName = infoDictionary[(NSString *)kCFBundleNameKey];
+	NSString *displayName = [localizedInfoDictionary objectForKey:@"CFBundleDisplayName"];
+	if (displayName == nil)  displayName = [[NSRunningApplication currentApplication] localizedName];
 	
 	NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not change the setting for opening “%@” at Login.", @"Notify of launch at login setting change failure."), displayName];
 	NSString *details = NSLocalizedString(@"Your version of OS X may not be supported, yet. \n"
