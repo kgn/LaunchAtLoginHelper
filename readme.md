@@ -82,6 +82,21 @@ If you want to receive failure notifications in your app, you can add an entry t
 
 Now, select your login toggle (checkbox) and open the Bindings inspector in the Utilities pane. Expand `Value`, check the “Bind to”, and select the name of the `LLManager` object you created earlier. Set the key path to `launchAtLogin`. You’re done!
 
+## Notes
+
+Apple’s [Daemons and Services Programming Guide](http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLoginItems.html#//apple_ref/doc/uid/10000172i-SW5-SW1) tells us the following under the heading “Adding Login Items Using the Service Management Framework”:
+
+> If multiple applications (for example, several applications from the same company) contain a helper application with the same bundle identifier, only the one with the greatest bundle version number is launched. Any of the applications that contain a copy of the helper application can enable and disable it.
+
+So we should make sure that our helper will have a monotonically increasing *bundle version number*. This is especially important for beta testing, where multiple bundles with the same bundle identifier may be available and the *version number* is the only thing differentiating them.
+
+You can use something like this bash script fragment:
+
+    echo -n "${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LoginItems/LaunchAtLoginHelper.app/Contents/Info.plist" \
+        | xargs -0 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION_NUM"
+
+You will have to set $VERSION_NUM beforehand, of course. `PlistBuddy` is part of any Xcode install.
+
 ---
 
 Special thanks to [Curtis Hard](http://www.geekygoodness.com) for offering some much needed advice on this project.
