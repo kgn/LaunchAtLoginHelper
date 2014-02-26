@@ -17,9 +17,15 @@ $ cd <main_app_project>
 $ git submodule add https://github.com/kgn/LaunchAtLoginHelper.git External/LaunchAtLoginHelper
 ```
 
+### 1. URL Type
+
 **LaunchAtLoginHelper** uses a url scheme to launch the main app, if the main app doesn’t have a url scheme yet, you will have to add one.
 
 ![](http://kgn.github.com/content/launchatlogin/url_scheme.png)
+
+This will add a CFBundleURLTypes key and the correct hierarchy of child keys to your app’s `Info.plist`.
+
+### 2. setup.py
 
 There is some setup missing in a fresh repo, that is specific to your instance of the helper app. To generate the necessary files run the `setup.py` python script and pass in the url scheme to launch the main app and the bundle identifier of the helper app, this is usually based of of the bundle identifier of the main app but with *Helper* added onto the end.
 
@@ -36,6 +42,8 @@ $ python setup.py launchatloginsample com.InScopeApps.ShellTo.LaunchAtLoginHelpe
 ```
 
 This will complete the setup of your custom `LaunchAtLoginHelper-Info.plist` which is created for the helper app with it’s custom bundle identifier filled in.
+
+### 3. Adding to your main project
 
 Once these files are generated it’s time to add **LaunchAtLoginHelper** to the main app. Drag `LaunchAtLoginHelper.xcodeproj`, `LLManager.h`, and `LLManager.m` to the main app’s project.
 
@@ -72,7 +80,7 @@ If you want to receive failure notifications in your app, you can add an entry t
 * Type: Boolean
 * Value: (checked)
 
-Now, select to your login toggle (checkbox) and open the Bindings inspector in the Utilities pane. Expand `Value`, check the “Bind to”, and select the name of the `LLManager` object you created earlier. Set the key path to `launchAtLogin`. You’re done!
+Now, select your login toggle (checkbox) and open the Bindings inspector in the Utilities pane. Expand `Value`, check the “Bind to”, and select the name of the `LLManager` object you created earlier. Set the key path to `launchAtLogin`. You’re done!
 
 ---
 
