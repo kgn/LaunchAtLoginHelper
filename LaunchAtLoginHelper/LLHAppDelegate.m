@@ -19,7 +19,7 @@
     return URLScheme;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification{
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
     NSString *URLScheme = [self URLScheme];
     
     // Launch the main app by opening a URL with our custom scheme
