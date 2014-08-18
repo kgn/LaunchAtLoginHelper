@@ -29,7 +29,18 @@
                                                 host:@"launchedAtLogin"
                                                 path:@"/"];
 
-    [[NSWorkspace sharedWorkspace] openURL:schemeURL];
+    NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:schemeURL];
+    
+    // Check if app exists.
+    if (appURL) {
+        // App exists, run it.
+        [[NSWorkspace sharedWorkspace] openURL:schemeURL];
+    }
+    else {
+        // Log that the app couldn’t be found.
+        NSLog(@"No app responds to the scheme “%@”. The helper should be removed from launchd.", URLScheme);
+    }
+    
     [NSApp terminate:self];
 }
 
