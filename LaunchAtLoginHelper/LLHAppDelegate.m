@@ -20,6 +20,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    // The scheme to launch the app
     NSString *URLScheme = [self URLScheme];
     
     // Launch the main app by opening a URL with our custom scheme
@@ -29,6 +30,7 @@
                                                 host:@"launchedAtLogin"
                                                 path:@"/"];
 
+    // Get URL for app that responds to scheme
     NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:schemeURL];
     
     // Check if app exists.
