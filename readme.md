@@ -4,7 +4,7 @@ When creating a sandboxed app, `LSSharedFileListInsertItemURL` can no longer be 
 
 A lot of research went into this helper app. For example [Apple’s docs](http://developer.apple.com/library/mac/#documentation/Security/Conceptual/AppSandboxDesignGuide/DesigningYourSandbox/DesigningYourSandbox.html#//apple_ref/doc/uid/TP40011183-CH4-SW3) state that `LSRegisterURL` should be used to register the helper app, however this never seemed to work and after further digging it turns out this is a [typo in the docs](https://devforums.apple.com/message/647212#647212). Many examples I found online used `NSWorkspace launchApplication:` to launch the main app, however this was blocked by sandboxing so a url scheme is used instead.
 
-**LaunchAtLoginHelper** calls the main app’s scheme twice, once to launch the app and then again with `launchedAtLogin` so the main app can know if it has been launched at login. For example [Play by Play](http://playbyplayapp.com) uses this to hide the app if it was launched at login.
+**LaunchAtLoginHelper** calls the main app’s scheme to launch the app with `launchedAtLogin` as the `host` so the main app can know if it has been launched at login. For example [Play by Play](http://playbyplayapp.com) uses this to hide the app if it was launched at login.
 
 This project contains a [sample app](https://github.com/kgn/LaunchAtLoginHelper/tree/master/LaunchAtLoginSample) to demonstrate how the main app should be configured and how to setup a checkbox to enable and disable launching at login.
 
@@ -93,9 +93,13 @@ So we should make sure that our helper will have a monotonically increasing *bun
 You can use something like this bash script fragment:
 
     echo -n "${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LoginItems/LaunchAtLoginHelper.app/Contents/Info.plist" \
+        | xargs -0 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $REVISION"
+    echo -n "${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LoginItems/LaunchAtLoginHelper.app/Contents/Info.plist" \
         | xargs -0 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION_NUM"
 
-You will have to set $VERSION_NUM beforehand, of course. `PlistBuddy` is part of any Xcode install.
+You will have to set $REVISION and $VERSION_NUM beforehand, of course. `PlistBuddy` is part of any Xcode install. A good place to do this is a script that extracts version information from the current git tag and writes it to your app’s `Info.plist`.
+
+Warning: the above will invalidate your launch helper’s signature as you are modifying the data that was signed while it was built as a prerequisite for building your main app. To fix this, its needs to be signed again. A convenient way to do this is [this script](http://stackoverflow.com/a/11284404). 
 
 ---
 
