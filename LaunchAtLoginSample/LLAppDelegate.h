@@ -14,6 +14,8 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSButton *checkBox;
 
+#if 0
 - (IBAction)checkBoxAction:(id)sender;
+#endif
 
 @end

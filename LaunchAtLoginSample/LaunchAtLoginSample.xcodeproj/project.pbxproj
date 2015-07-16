@@ -48,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D2C348E18AEB4280000F0E5 /* LaunchAtLoginSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LaunchAtLoginSample-Info.plist"; sourceTree = SOURCE_ROOT; };
 		734C37581541467600994189 /* LaunchAtLoginSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LaunchAtLoginSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734C375C1541467600994189 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		734C375F1541467600994189 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -55,7 +56,6 @@
 		734C378715414B2200994189 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		73C920D515414DF300C2A75A /* LLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLManager.h; path = ../LLManager.h; sourceTree = SOURCE_ROOT; };
 		73C920D615414DF300C2A75A /* LLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLManager.m; path = ../LLManager.m; sourceTree = SOURCE_ROOT; };
-		73C920D715414DF300C2A75A /* LLStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLStrings.h; path = ../LLStrings.h; sourceTree = SOURCE_ROOT; };
 		73C920D915414E3100C2A75A /* LLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		73C920DA15414E3100C2A75A /* LLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		73C920DB15414E3100C2A75A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -81,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				73C9210415414FF600C2A75A /* LaunchAtLoginHelper.xcodeproj */,
-				73C920D715414DF300C2A75A /* LLStrings.h */,
 				73C920D515414DF300C2A75A /* LLManager.h */,
 				73C920D615414DF300C2A75A /* LLManager.m */,
 				734C37621541467600994189 /* LaunchAtLoginSample */,
@@ -117,6 +116,7 @@
 				73C920D915414E3100C2A75A /* LLAppDelegate.h */,
 				73C920DA15414E3100C2A75A /* LLAppDelegate.m */,
 				73C920DC15414E3100C2A75A /* MainMenu.xib */,
+				3D2C348E18AEB4280000F0E5 /* LaunchAtLoginSample-Info.plist */,
 				73C9210F15414FFA00C2A75A /* LaunchAtLoginSample.entitlements */,
 			);
 			path = LaunchAtLoginSample;
@@ -290,6 +290,7 @@
 		734C37771541467600994189 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginSample.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -303,6 +304,7 @@
 		734C37781541467600994189 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginSample.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;

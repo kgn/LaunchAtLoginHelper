@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2C348D18AEB4160000F0E5 /* LaunchAtLoginHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LaunchAtLoginHelper-Info.plist"; path = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist"; sourceTree = "<group>"; };
 		734C379415414CE200994189 /* LaunchAtLoginHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LaunchAtLoginHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734C379815414CE200994189 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		734C379B15414CE200994189 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -22,7 +23,6 @@
 		73C920E615414E7800C2A75A /* LLHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLHAppDelegate.m; path = LaunchAtLoginHelper/LLHAppDelegate.m; sourceTree = "<group>"; };
 		73C920E715414E7800C2A75A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LaunchAtLoginHelper/main.m; sourceTree = "<group>"; };
 		73C920E815414E7800C2A75A /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = LaunchAtLoginHelper/MainMenu.xib; sourceTree = "<group>"; };
-		73C920FA15414F7000C2A75A /* LLStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStrings.h; sourceTree = SOURCE_ROOT; };
 		73C920FB15414FC900C2A75A /* LaunchAtLoginHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = LaunchAtLoginHelper.entitlements; path = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,10 +42,10 @@
 			isa = PBXGroup;
 			children = (
 				73C920E715414E7800C2A75A /* main.m */,
-				73C920FA15414F7000C2A75A /* LLStrings.h */,
 				73C920E515414E7800C2A75A /* LLHAppDelegate.h */,
 				73C920E615414E7800C2A75A /* LLHAppDelegate.m */,
 				73C920E815414E7800C2A75A /* MainMenu.xib */,
+				3D2C348D18AEB4160000F0E5 /* LaunchAtLoginHelper-Info.plist */,
 				73C920FB15414FC900C2A75A /* LaunchAtLoginHelper.entitlements */,
 				734C379715414CE200994189 /* Frameworks */,
 				734C379515414CE200994189 /* Products */,
@@ -98,7 +98,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LLH;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "David Keegan";
 			};
 			buildConfigurationList = 734C378E15414CE200994189 /* Build configuration list for PBXProject "LaunchAtLoginHelper" */;
@@ -151,12 +151,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -186,12 +189,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -208,6 +214,7 @@
 		734C37B315414CE200994189 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist";
@@ -221,6 +228,7 @@
 		734C37B415414CE200994189 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				INFOPLIST_FILE = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist";
