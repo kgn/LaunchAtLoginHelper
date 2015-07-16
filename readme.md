@@ -53,6 +53,8 @@ Next go to the *Build Phases* for the main app and add **LaunchAtLoginHelper** a
 
 ![](http://kgn.github.com/content/launchatlogin/build_phases.png)
 
+You also have to set `LLHelperBundleIdentifier` in the main app's Info.plist so using `LLManager` will be able to discover the helper app. 
+
 Lastly add `ServiceManagement.framework` to the main app.
 
 Once this is done use `LLManager` to enable and disable launching at login! [**LaunchAtLoginSample**](https://github.com/kgn/LaunchAtLoginHelper/blob/master/LaunchAtLoginSample/LLAppDelegate.m) shows how to hook this up to a checkbox.
